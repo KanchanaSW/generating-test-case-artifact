@@ -62,3 +62,7 @@ Claude Code also lets you invoke it directly: `/generating-test-case-artifact`.
 ```bash
 rm -rf ~/.claude/skills/generating-test-case-artifact ~/.cursor/skills/generating-test-case-artifact
 ```
+
+## License
+
+[MIT](./LICENSE)
