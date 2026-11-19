@@ -22,74 +22,27 @@ Full instructions are in [`SKILL.md`](./SKILL.md).
 
 ## Install
 
-No clone needed. The skill is one file, `SKILL.md`, downloaded straight from
-[github.com/KanchanaSW/generating-test-case-artifact](https://github.com/KanchanaSW/generating-test-case-artifact).
+One command, no clone. It downloads `SKILL.md` from this repo into your skills folder (re-run it to update).
 
-### Claude Code
-
-Personal (all projects):
+**Claude Code**
 
 ```bash
-mkdir -p ~/.claude/skills/generating-test-case-artifact
-curl -fsSL https://raw.githubusercontent.com/KanchanaSW/generating-test-case-artifact/main/SKILL.md \
-  -o ~/.claude/skills/generating-test-case-artifact/SKILL.md
+curl -fsSL --create-dirs -o ~/.claude/skills/generating-test-case-artifact/SKILL.md https://raw.githubusercontent.com/KanchanaSW/generating-test-case-artifact/main/SKILL.md
 ```
 
-Project only (run from the project root):
+**Cursor**
 
 ```bash
-mkdir -p .claude/skills/generating-test-case-artifact
-curl -fsSL https://raw.githubusercontent.com/KanchanaSW/generating-test-case-artifact/main/SKILL.md \
-  -o .claude/skills/generating-test-case-artifact/SKILL.md
+curl -fsSL --create-dirs -o ~/.cursor/skills/generating-test-case-artifact/SKILL.md https://raw.githubusercontent.com/KanchanaSW/generating-test-case-artifact/main/SKILL.md
 ```
 
-### Cursor
-
-Personal (all projects):
+**Both**
 
 ```bash
-mkdir -p ~/.cursor/skills/generating-test-case-artifact
-curl -fsSL https://raw.githubusercontent.com/KanchanaSW/generating-test-case-artifact/main/SKILL.md \
-  -o ~/.cursor/skills/generating-test-case-artifact/SKILL.md
+for t in claude cursor; do curl -fsSL --create-dirs -o ~/.$t/skills/generating-test-case-artifact/SKILL.md https://raw.githubusercontent.com/KanchanaSW/generating-test-case-artifact/main/SKILL.md; done
 ```
 
-Project only (run from the project root):
-
-```bash
-mkdir -p .cursor/skills/generating-test-case-artifact
-curl -fsSL https://raw.githubusercontent.com/KanchanaSW/generating-test-case-artifact/main/SKILL.md \
-  -o .cursor/skills/generating-test-case-artifact/SKILL.md
-```
-
-### Both at once
-
-```bash
-URL=https://raw.githubusercontent.com/KanchanaSW/generating-test-case-artifact/main/SKILL.md
-for d in ~/.claude/skills ~/.cursor/skills; do
-  mkdir -p "$d/generating-test-case-artifact"
-  curl -fsSL "$URL" -o "$d/generating-test-case-artifact/SKILL.md"
-done
-```
-
-### Or clone the repo
-
-```bash
-git clone https://github.com/KanchanaSW/generating-test-case-artifact.git
-cd generating-test-case-artifact
-```
-
-Then copy or symlink `SKILL.md` into the folders above (`ln -s "$PWD/SKILL.md" <target>/SKILL.md` keeps it updated with `git pull`).
-
-### Update
-
-Re-run the same `curl` command; it overwrites the old copy.
-
-### Verify
-
-```bash
-ls ~/.claude/skills/generating-test-case-artifact/SKILL.md
-ls ~/.cursor/skills/generating-test-case-artifact/SKILL.md
-```
+For one project only, replace `~/.claude` / `~/.cursor` with `.claude` / `.cursor` and run it from the project root.
 
 Restart Claude Code / Cursor (or start a new session) so the skill is picked up.
 
