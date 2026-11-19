@@ -53,6 +53,7 @@ Ask in plain language, from inside the project you want tested:
 ```
 Generate test cases for this project as an artifact
 Create a QA checklist from the plan in docs/plans
+Generate test cases only for the login feature
 ```
 
 Claude Code also lets you invoke it directly: `/generating-test-case-artifact`.

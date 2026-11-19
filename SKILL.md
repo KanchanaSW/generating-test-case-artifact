@@ -1,6 +1,6 @@
 ---
 name: generating-test-case-artifact
-description: Use when the user asks for test cases, a test plan, a QA checklist, or a test matrix based on a project's code, plans, .md files or previously created artifacts, to be delivered as an artifact.
+description: Use when the user asks for test cases, a test plan, a QA checklist, or a test matrix, for a whole project or for one named feature, based on a project's code, plans, .md files or previously created artifacts, to be delivered as an artifact.
 ---
 
 # Generating a Test Case Artifact
@@ -9,7 +9,15 @@ description: Use when the user asks for test cases, a test plan, a QA checklist,
 
 Read everything the project contains (code, plans, markdown, earlier artifacts), then publish ONE artifact: a sectioned table of test cases with a result and a screenshot slot per case. Every test case must trace to something found in the project. Do not invent features.
 
+## Step 0: Set the scope
+
+- **Whole project (default):** the user names no feature. Follow every step below.
+- **Single feature:** the user names one ("test cases for login", "QA checklist for the checkout flow", "only the CSV export"). Restrict everything to that feature and its direct touchpoints (its UI, API, validation, permissions, data it reads or writes, and errors it can raise). Do not add sections for other features.
+- If the named feature matches nothing in the project, say so and ask. Do not fabricate. If the name is ambiguous (matches several features), ask which one.
+
 ## Step 1: Gather evidence
+
+In single-feature mode, search for the feature's files, docs and plans first and read only those and what they call. Skip unrelated areas.
 
 Run these in parallel; skip nothing that exists:
 
@@ -26,7 +34,7 @@ If nothing is found, say so and ask the user what to test. Do not fabricate.
 
 ## Step 2: Derive sections
 
-Sections come from the evidence, not a fixed list. Candidate catalogue (include one only if the project has related behavior):
+Sections come from the evidence, not a fixed list. In single-feature mode the sections are facets of that one feature (for example for login: Form validation, Authentication, Error handling, Security, UX), and the artifact title names the feature. Candidate catalogue (include one only if the project has related behavior):
 
 Authentication · Authorization/roles · UI and UX · Forms and validation · Duplicate detection · Data integrity/CRUD · API contracts · Error handling · Search/filter/pagination · File upload · Notifications · Integrations · Performance · Accessibility · Security · Responsive/cross-browser
 
@@ -46,7 +54,7 @@ Add project-specific sections the catalogue lacks. Within each section cover: ha
 2. **REQUIRED SUB-SKILLS:** load `artifact-design` and `artifact-capabilities` before writing the page.
 3. Declare the capabilities needed so results and screenshots persist and are shared (shared state for Result and notes; file/asset storage for screenshots). Browser storage alone is not acceptable for results.
 4. Page layout:
-   - Header: project name, date, totals (cases, passed, failed, not run).
+   - Header: project name (plus the feature name in single-feature mode), date, totals (cases, passed, failed, not run).
    - One section per area with a heading, case count and its own pass/fail tally; sections are visually separated and collapsible.
    - Each section is a table with columns exactly: **Test Case ID | Test Case Description | Steps | Result | Result Screenshot**.
    - Result cell: status selector + notes. Screenshot cell: paste/upload control with thumbnail preview and click-to-enlarge.
@@ -76,6 +84,7 @@ node --check chk.js && echo SYNTAX_OK; rm chk.js
 
 | Mistake | Fix |
 |---|---|
+| Single-feature request but cases for the whole app | Keep only that feature and its touchpoints |
 | Generic cases ("test login works") | Use real routes, fields and data from the code |
 | Sections not backed by code | Drop them |
 | Cases with no `Source:` | Add it or delete the case |
