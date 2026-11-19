@@ -67,3 +67,7 @@ rm -rf ~/.claude/skills/generating-test-case-artifact ~/.cursor/skills/generatin
 ## License
 
 [MIT](./LICENSE)
+
+<img width="972" height="783" alt="image" src="https://github.com/user-attachments/assets/f79d60d1-fb09-4b49-be54-1bba1dd0da99" />
+
+
