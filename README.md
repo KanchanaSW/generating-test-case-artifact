@@ -22,7 +22,8 @@ Full instructions are in [`SKILL.md`](./SKILL.md).
 
 ## Install
 
-Run these from the folder containing this README.
+No clone needed. The skill is one file, `SKILL.md`, downloaded straight from
+[github.com/KanchanaSW/generating-test-case-artifact](https://github.com/KanchanaSW/generating-test-case-artifact).
 
 ### Claude Code
 
@@ -30,14 +31,16 @@ Personal (all projects):
 
 ```bash
 mkdir -p ~/.claude/skills/generating-test-case-artifact
-cp SKILL.md ~/.claude/skills/generating-test-case-artifact/
+curl -fsSL https://raw.githubusercontent.com/KanchanaSW/generating-test-case-artifact/main/SKILL.md \
+  -o ~/.claude/skills/generating-test-case-artifact/SKILL.md
 ```
 
-Project only:
+Project only (run from the project root):
 
 ```bash
 mkdir -p .claude/skills/generating-test-case-artifact
-cp SKILL.md .claude/skills/generating-test-case-artifact/
+curl -fsSL https://raw.githubusercontent.com/KanchanaSW/generating-test-case-artifact/main/SKILL.md \
+  -o .claude/skills/generating-test-case-artifact/SKILL.md
 ```
 
 ### Cursor
@@ -46,26 +49,40 @@ Personal (all projects):
 
 ```bash
 mkdir -p ~/.cursor/skills/generating-test-case-artifact
-cp SKILL.md ~/.cursor/skills/generating-test-case-artifact/
+curl -fsSL https://raw.githubusercontent.com/KanchanaSW/generating-test-case-artifact/main/SKILL.md \
+  -o ~/.cursor/skills/generating-test-case-artifact/SKILL.md
 ```
 
-Project only:
+Project only (run from the project root):
 
 ```bash
 mkdir -p .cursor/skills/generating-test-case-artifact
-cp SKILL.md .cursor/skills/generating-test-case-artifact/
+curl -fsSL https://raw.githubusercontent.com/KanchanaSW/generating-test-case-artifact/main/SKILL.md \
+  -o .cursor/skills/generating-test-case-artifact/SKILL.md
 ```
 
 ### Both at once
 
 ```bash
+URL=https://raw.githubusercontent.com/KanchanaSW/generating-test-case-artifact/main/SKILL.md
 for d in ~/.claude/skills ~/.cursor/skills; do
   mkdir -p "$d/generating-test-case-artifact"
-  cp SKILL.md "$d/generating-test-case-artifact/"
+  curl -fsSL "$URL" -o "$d/generating-test-case-artifact/SKILL.md"
 done
 ```
 
-Use `ln -s "$PWD/SKILL.md" <target>/SKILL.md` instead of `cp` if you want edits here to apply everywhere.
+### Or clone the repo
+
+```bash
+git clone https://github.com/KanchanaSW/generating-test-case-artifact.git
+cd generating-test-case-artifact
+```
+
+Then copy or symlink `SKILL.md` into the folders above (`ln -s "$PWD/SKILL.md" <target>/SKILL.md` keeps it updated with `git pull`).
+
+### Update
+
+Re-run the same `curl` command; it overwrites the old copy.
 
 ### Verify
 
